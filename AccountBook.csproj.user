@@ -7,7 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Component\WalletComponent.xaml.cs">
+    <Compile Update="Component\WalletElement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Component\WalletTable.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WalletWindow.xaml.cs">
@@ -15,7 +18,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Component\WalletComponent.xaml">
+    <Page Update="Component\WalletElement.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Component\WalletTable.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">

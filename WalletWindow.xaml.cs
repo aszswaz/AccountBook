@@ -10,11 +10,11 @@ namespace AccountBook {
         private Wallet wallet;
         private string? newIcon = null;
 
-        public WalletWindow(Window main) : this(main, null) { }
+        public WalletWindow() : this(null) { }
 
-        public WalletWindow(Window main, Wallet? wallet) {
+        public WalletWindow(Wallet? wallet) {
             InitializeComponent();
-            this.Owner = main;
+            this.Owner = Application.Current.MainWindow;
 
             if (wallet != null) {
                 this.wallet = wallet;

@@ -12,8 +12,10 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <local:WalletTable Grid.Row="0"/>
+        <local:SpendingTable Grid.Row="1"/>
     </Grid>
 </Window>

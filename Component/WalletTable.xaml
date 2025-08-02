@@ -11,7 +11,7 @@
         <StackPanel Orientation="Vertical" Background="LightCyan" Grid.Row="0">
             <!--板块标题和新建钱包的按钮-->
             <StackPanel Orientation="Horizontal" Background="LightGray" Height="30">
-                <Label FontSize="16">所有钱包余额</Label>
+                <Label FontSize="16">所有钱包</Label>
                 <!--创建钱包的按钮-->
                 <Button 
             Content="新建"

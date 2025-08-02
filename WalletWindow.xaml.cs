@@ -7,8 +7,8 @@ using AccountBook.Utils;
 
 namespace AccountBook {
     public partial class WalletWindow : Window {
-        public Wallet wallet;
-        public string? newIcon = null;
+        private Wallet wallet;
+        private string? newIcon = null;
 
         public WalletWindow(Window main) : this(main, null) { }
 
@@ -42,7 +42,7 @@ namespace AccountBook {
                 // 如果用户修改了图标，将其保存到指定目录和数据库
                 if (!string.IsNullOrEmpty(this.newIcon)) {
                     // 删除旧的图标
-                    if (this.wallet.Icon != null) IconManager.DeleteIcon(this.wallet.Icon);
+                    IconManager.DeleteIcon(this.wallet.Icon);
                     this.wallet.Icon = IconManager.AddIcon(this.newIcon);
                 }
 
@@ -50,6 +50,8 @@ namespace AccountBook {
                 this.wallet.Name = name;
                 this.wallet.Balance = decimal.Parse(balance);
                 WalletCollection.InsertOrUpdateWallet(this.wallet);
+
+                Utils.EventManager.SendUpdateWallets();
                 Close();
             } catch (Exception ex) {
                 DialogUtil.Error(ex.Message);

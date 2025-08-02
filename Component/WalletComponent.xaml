@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="AccountBook.Component.WalletComponent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AccountBook.Component"
+             xmlns:xc="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="260">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!--钱包图片-->
+        <Image 
+            x:Name="WalletIcon" 
+            Source="/Resources/wallet.jpg" 
+            Height="100" Width="100" Grid.Column="0"/>
+
+        <!--钱包信息-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="名称：" Width="40" Height="25" Grid.Column="0" Grid.Row="0"/>
+            <Label
+                x:Name="WalletNameText"
+                Width="120" Height="25" Grid.Column="1" Grid.Row="0"/>
+            <Label Content="余额：" Width="40" Height="25" Grid.Column="0" Grid.Row="1"/>
+            <Label
+                x:Name="WalletBalanceText"
+                Width="120" Height="25" Grid.Column="1" Grid.Row="1"/>
+        </Grid>
+    </Grid>
+</UserControl>

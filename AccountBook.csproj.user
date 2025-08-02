@@ -7,11 +7,17 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Component\WalletComponent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WalletWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Component\WalletComponent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

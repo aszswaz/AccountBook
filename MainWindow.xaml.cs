@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using AccountBook.Component;
 using AccountBook.Local;
 using AccountBook.Utils;
 
@@ -26,9 +26,14 @@ namespace AccountBook {
         public MainWindow() {
             this.DataContext = this;
             InitializeComponent();
-            this.Loaded += (sender, e) => {
-                this.LoadWallets();
-            };
+            this.Init();
+        }
+
+        private void Init() {
+            // 注册 Window 加载事件
+            this.Loaded += (sender, e) => this.LoadWallets();
+            // 注册钱包数据更新事件
+            Utils.EventManager.WalletsUpdated += this.LoadWallets;
         }
 
         /**
@@ -44,8 +49,11 @@ namespace AccountBook {
          */
         private void LoadWallets() {
             var wallets = WalletCollection.GetAllWallets();
+            WalletsPanel.Children.Clear();
+            // 钱包数据显示到页面
             foreach (var item in wallets) {
-                // TODO: 钱包数据显示到页面
+                var walletComponent = new WalletComponent(item);
+                WalletsPanel.Children.Add(walletComponent);
             }
         }
 

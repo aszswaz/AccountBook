@@ -9,30 +9,25 @@
         Width="1824"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <!--钱包详情-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-        <!--创建钱包的按钮-->
-        <Button Content="+" Width="40" Height="40" FontSize="20" Margin="1724,865,0,0" Click="NewWallet">
-            <Button.Template>
-                <ControlTemplate TargetType="Button">
-                    <Grid>
-                        <!-- 圆形背景 -->
-                        <Ellipse x:Name="ellipse" 
-                         Fill="{TemplateBinding Background}"
-                         Stroke="{TemplateBinding BorderBrush}"
-                         StrokeThickness="2"/>
-                        <!-- 内容居中显示 -->
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <!-- 按钮按下时改变背景色 -->
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="ellipse" Property="Fill" Value="LightGray"/>
-                            <Setter TargetName="ellipse" Property="Stroke" Value="White"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Button.Template>
-        </Button>
+        <!--所有钱包-->
+        <StackPanel Orientation="Vertical" Background="LightCyan" Grid.Row="0">
+            <!--板块标题和新建钱包的按钮-->
+            <StackPanel Orientation="Horizontal" Background="LightGray" Height="30">
+                <Label FontSize="16">所有钱包余额</Label>
+                <!--创建钱包的按钮-->
+                <Button 
+                    Content="新建"
+                    Width="40" Height="30"
+                    FontSize="16"
+                    Click="NewWallet"/>
+            </StackPanel>
+            
+            <!--列出所有钱包-->
+            <StackPanel x:Name="WalletsPanel" Orientation="Horizontal" Background="LightGreen" Height="100"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -12,7 +12,8 @@ namespace AccountBook.Utils {
             return newIcon;
         }
 
-        public static void DeleteIcon(string icon) {
+        public static void DeleteIcon(string? icon) {
+            if (icon == null) return;
             var fullPath = FullPath(icon);
             File.Delete(fullPath);
         }

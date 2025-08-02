@@ -13,11 +13,11 @@ namespace AccountBook.Local {
         // 消费类型
         public string? ConsumptionType;
         // 商品单价
-        public double? UnitPrice;
+        public decimal? UnitPrice;
         // 商品数量
         public int? Quantity;
         // 商品总价
-        public double? TotalPrices;
+        public decimal? TotalPrices;
         // 付款钱包的 ID
         public ObjectId? WalletId;
     }

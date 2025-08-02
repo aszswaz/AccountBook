@@ -2,7 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Input;
+
+using AccountBook.Utils;
 
 namespace AccountBook.Local {
     public class WalletCollection {
@@ -15,20 +16,26 @@ namespace AccountBook.Local {
         /**
          * 创建或更新钱包
          */
-        public static void InsertOrUpdateWallet(Wallet newWallet) {
+        public static void InsertOrUpdateWallet(Wallet wallet) {
             long timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-            var oldWallet = FindWalletByName(newWallet.Name);
 
-            if (oldWallet == null) {
-                newWallet.createTime = timestamp;
-                newWallet.updateTime = timestamp;
-                collection.Insert(newWallet);
+            if (wallet.Id == null) {
+                // 数据不存在于数据库中，只要确认钱包名称不重复就保存到数据库
+                if (FindWalletByName(wallet.Name) != null)
+                    throw new Exception("钱包" + wallet.Name + "已存在");
+                wallet.createTime = timestamp;
+                wallet.updateTime = timestamp;
+                collection.Insert(wallet);
             } else {
-                if (newWallet.Icon != null) oldWallet.Icon = newWallet.Icon;
-                if (newWallet.Name != null) oldWallet.Name = newWallet.Name;
-                if (newWallet.Balance != null) oldWallet.Balance = newWallet.Balance;
-                oldWallet.updateTime = timestamp;
-                collection.Update(oldWallet);
+                // 数据已存在于数据库中，仅更新数据，如果用户修改了钱包名称，要确保新名称不重复
+                var oldWallet = collection.FindById(wallet.Id);
+                if (oldWallet == null) throw new Exception("不存在的 ID" + wallet.Id.ToString());
+                if (oldWallet.Name != wallet.Name) {
+                    if (FindWalletByName(wallet.Name) != null)
+                        throw new Exception("钱包" + wallet.Name + "已存在");
+                }
+                wallet.updateTime = timestamp;
+                collection.Update(wallet);
             }
         }
 

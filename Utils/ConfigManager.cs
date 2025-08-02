@@ -1,13 +1,15 @@
 ﻿using System;
 using System.IO;
 
-namespace AccountBook {
-    public class ConfigManager {
+namespace AccountBook.Utils {
+    public class ConfigManager
+    {
         private readonly static string BASE_DIR;
         public readonly static string DB_PATH;
         public readonly static string ICON_DIR;
 
-        static ConfigManager() {
+        static ConfigManager()
+        {
             BASE_DIR = AppDomain.CurrentDomain.BaseDirectory;
             DB_PATH = Path.Combine(BASE_DIR, "AccountBook.db");
             ICON_DIR = Path.Combine(BASE_DIR, "Icons");

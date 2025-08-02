@@ -1,7 +1,7 @@
-﻿<Application x:Class="account_book.App"
+﻿<Application x:Class="AccountBook.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:account_book"
+             xmlns:local="clr-namespace:AccountBook"
              StartupUri="MainWindow.xaml"
              ShutdownMode="OnMainWindowClose">
     <Application.Resources>

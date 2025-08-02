@@ -13,7 +13,7 @@ namespace AccountBook.Local {
         // 钱包名称
         public string? Name { get; set; }
         // 钱包余额
-        public double? Balance { get; set; }
+        public decimal? Balance { get; set; }
         // 创建时间
         public long? createTime { get; set; }
         // 修改时间

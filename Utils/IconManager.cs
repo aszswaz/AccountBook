@@ -2,8 +2,9 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using AccountBook.Utils;
 
-namespace AccountBook {
+namespace AccountBook.Utils {
     public class IconManager {
         public static string AddIcon(string iconFile) {
             var newIcon = Guid.NewGuid().ToString() + ".jpg";

@@ -3,15 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:account_book"
+        xmlns:local="clr-namespace:AccountBook"
+        xmlns:xc="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="创建钱包" 
         Height="160" 
-        Width="280"
+        Width="300"
         WindowStartupLocation="CenterOwner"
         Background="LightCyan"
         ShowInTaskbar="False">
-    <Grid>
+    <Grid Width="260">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="Auto"/>
@@ -42,9 +43,11 @@
                 TextWrapping="NoWrap" 
                 Width="120" Height="20" Grid.Column="1" Grid.Row="0"/>
             <Label Content="余额：" Width="40" Height="25" Grid.Column="0" Grid.Row="1"/>
-            <TextBox 
+            <xc:DecimalUpDown
                 x:Name="WalletBalanceText"
-                TextWrapping="NoWrap" 
+                Increment="1.00"
+                FormatString="F2"
+                Value="0.00"
                 Width="120" Height="20" Grid.Column="1" Grid.Row="1"/>
 
             <!--保存钱包信息-->

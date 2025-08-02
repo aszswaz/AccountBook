@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using AccountBook.Local;
+using AccountBook.Utils;
 
 /**
  * 用于管理收支明细的软件

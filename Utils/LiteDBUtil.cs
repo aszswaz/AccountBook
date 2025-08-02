@@ -1,6 +1,6 @@
 ﻿using LiteDB;
 
-namespace AccountBook.Local {
+namespace AccountBook.Utils {
     public static class LiteDBUtil {
         private static readonly LiteDatabase DB;
 

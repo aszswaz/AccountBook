@@ -5,20 +5,20 @@ namespace AccountBook.Local {
      * 支出账单
      */
     public class ExpensesBill {
-        public ObjectId? Id;
+        public ObjectId? Id { get; set; }
         // 消费日期
-        public long? Timestamp = 0;
+        public long? ConsumptionDate { get; set; }
         // 商品名称
-        public string? CommodityName;
+        public string? CommodityName { get; set; }
         // 消费类型
-        public string? ConsumptionType;
+        public string? ConsumptionType { get; set; }
         // 商品单价
-        public decimal? UnitPrice;
+        public decimal? UnitPrice { get; set; }
         // 商品数量
-        public int? Quantity;
+        public int? Quantity { get; set; }
         // 商品总价
-        public decimal? TotalPrices;
+        public decimal? TotalPrices { get; set; }
         // 付款钱包的 ID
-        public ObjectId? WalletId;
+        public ObjectId? WalletId { get; set; }
     }
 }

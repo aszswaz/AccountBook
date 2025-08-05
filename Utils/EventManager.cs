@@ -1,6 +1,6 @@
 ﻿using System;
 
-using AccountBook.Local;
+using AccountBook.Entity;
 
 namespace AccountBook.Utils {
     /**

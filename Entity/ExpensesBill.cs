@@ -1,13 +1,14 @@
 ﻿using LiteDB;
+using System;
 
-namespace AccountBook.Local {
+namespace AccountBook.Entity {
     /**
-     * 支出账单
+     * 支出账单的持久化对象
      */
     public class ExpensesBill {
         public ObjectId? Id { get; set; }
         // 消费日期
-        public long? ConsumptionDate { get; set; }
+        public DateTime? ConsumptionDate { get; set; }
         // 商品名称
         public string? CommodityName { get; set; }
         // 消费类型
@@ -15,7 +16,7 @@ namespace AccountBook.Local {
         // 商品单价
         public decimal? UnitPrice { get; set; }
         // 商品数量
-        public int? Quantity { get; set; }
+        public decimal? Quantity { get; set; }
         // 商品总价
         public decimal? TotalPrices { get; set; }
         // 付款钱包的 ID

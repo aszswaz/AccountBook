@@ -2,7 +2,7 @@
 using System.Windows;
 using Microsoft.Win32;
 
-using AccountBook.Local;
+using AccountBook.Entity;
 using AccountBook.Utils;
 
 namespace AccountBook {

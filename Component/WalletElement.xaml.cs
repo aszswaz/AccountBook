@@ -1,4 +1,4 @@
-﻿using AccountBook.Local;
+﻿using AccountBook.Entity;
 using AccountBook.Utils;
 using System.Windows.Controls;
 

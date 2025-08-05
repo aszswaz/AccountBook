@@ -6,16 +6,10 @@
              xmlns:local="clr-namespace:AccountBook.Component"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        
+    <StackPanel Orientation="Vertical">
         <!--TODO：消费账单的按钮、今日消费总计、本月消费总计、本年消费总计、历史消费总计-->
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <Label>消费支出</Label>
-            <Button Width="40">新建</Button>
             
             <Label>今日消费</Label>
             <Label>0.00</Label>
@@ -37,7 +31,13 @@
             <Label>0.00</Label>
             <Label>元</Label>
         </StackPanel>
-        
-        <DataGrid Height="100" ItemsSource="{Binding Data}" AutoGenerateColumns="True" Grid.Row="1" CanUserAddRows="True"/>
-    </Grid>
+
+        <DataGrid
+            x:Name="DataTable"
+            Grid.Row="1"
+            ItemsSource="{Binding Data}" 
+            AutoGenerateColumns="True" CanUserAddRows="False" CanUserDeleteRows="True"/>
+
+        <Button Grid.Row="2" FontSize="10" Click="NewData">+</Button>
+    </StackPanel>
 </UserControl>

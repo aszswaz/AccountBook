@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Component\ExpensesBillWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Component\SpendingTable.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,0 +1,75 @@
+﻿<Window x:Class="AccountBook.Component.ExpensesBillWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AccountBook.Component"
+        xmlns:xc="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="支出账单" Height="250" Width="300"
+        WindowStartupLocation="CenterOwner">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Label>消费日期：</Label>
+            <DatePicker x:Name="ConsumptionDate"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <Label>商品名称：</Label>
+            <TextBox x:Name="CommodityName" Width="200"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <Label>消费类型：</Label>
+            <ComboBox x:Name="ConsumptionType" Width="120">
+                <ComboBoxItem IsSelected="True">食品烟酒</ComboBoxItem>
+                <ComboBoxItem>​衣着</ComboBoxItem>
+                <ComboBoxItem>​​居住</ComboBoxItem>
+                <ComboBoxItem>​生活用品及服务</ComboBoxItem>
+                <ComboBoxItem>​交通通信</ComboBoxItem>
+                <ComboBoxItem>​​教育文化娱乐</ComboBoxItem>
+                <ComboBoxItem>​​医疗保健</ComboBoxItem>
+
+                <ComboBoxItem>基金股票</ComboBoxItem>
+                <ComboBoxItem>科技 DIY</ComboBoxItem>
+                <ComboBoxItem>其它</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <Label>商品单价：</Label>
+            <xc:DecimalUpDown
+                x:Name="UnitPrice"
+                Increment="1.00"
+                FormatString="F2"
+                Value="0.00"
+                Width="120"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal">
+            <Label>商品数量：</Label>
+            <xc:DecimalUpDown
+                x:Name="Quantity"
+                Increment="1.00"
+                FormatString="F2"
+                Value="0.00"
+                Width="120"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Label>商品总价：</Label>
+            <Label x:Name="TotalPrices">0.00</Label>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+            <Label>付款钱包：</Label>
+            <ComboBox x:Name="WalletName" Width="120">
+                <ComboBoxItem IsSelected="True">微信</ComboBoxItem>
+                <ComboBoxItem>支付宝</ComboBoxItem>
+                <ComboBoxItem>银行卡</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+
+        <Button Click="Save">保存</Button>
+    </StackPanel>
+</Window>

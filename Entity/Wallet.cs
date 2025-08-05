@@ -1,6 +1,6 @@
 ﻿using LiteDB;
 
-namespace AccountBook.Local {
+namespace AccountBook.Entity {
     /**
      * 钱包的信息，比如微信、支付宝、银行卡等
      */

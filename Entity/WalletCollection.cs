@@ -5,7 +5,7 @@ using System.Linq;
 
 using AccountBook.Utils;
 
-namespace AccountBook.Local {
+namespace AccountBook.Entity {
     public class WalletCollection {
         private static ILiteCollection<Wallet> collection;
 

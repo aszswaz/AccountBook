@@ -1,0 +1,5 @@
+const WALLET_TABLE = "WALLET_TABLE"
+
+export {
+    WALLET_TABLE
+}

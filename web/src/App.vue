@@ -34,6 +34,6 @@
     <!-- 统计图标 -->
     <StatisticalChart v-if="!activeTab" />
     <!-- 钱包选项卡 -->
-    <WalletContent v-if="activeTab" :wallet="activeTab" />
+    <WalletContent v-else :wallet="activeTab" />
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <!-- TODO: 钱包选项卡，显示钱包的支出和收入信息 -->
-    <div id="statisticalChart">
+    <div id="statistical-chart">
         <h1>统计图</h1>
     </div>
 </template>

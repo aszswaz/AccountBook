@@ -1,9 +1,10 @@
 import { Options, Vue } from 'vue-class-component';
 
-import WalletContent from '@/components/WalletContent.vue';
-import StatisticalChart from '@/components/StatisticalChart.vue';
-import Wallet from '@/javascript/entity/Wallet';
-import DBManager from '@/javascript/util/DBManager';
+import WalletContent from '../components/WalletContent.vue';
+import StatisticalChart from '../components/StatisticalChart.vue';
+
+import Wallet from './entity/Wallet';
+import DBManager from './util/DBManager';
 
 @Options({
   components: {

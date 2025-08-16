@@ -10,20 +10,31 @@
             <h1>余额：{{ income.minus(expenditure).toFixed(2) }}</h1>
         </div>
 
-        <!-- 标签页式数据筛选区域 -->
-        <!-- 用于切换表格的标签页 -->
-        <div class="tab-bar">
-            <div :class="{ 'activate': showTable === SHOW_TABLE.expenditure_bill }"
+        <!-- 功能区域，用于控制 table 所显示的数据，比如显示支出或收入账单，按照日期筛选数据，按照分页显示数据，以及创建新的数据 -->
+        <div class="functional-domain">
+            <!-- 用于切换表格的标签页 -->
+            <div :class="{ 'activate-tab': showTable === SHOW_TABLE.expenditure_bill }"
                 @click="showTable = SHOW_TABLE.expenditure_bill">支出账单</div>
-            <div :class="{ 'activate': showTable === SHOW_TABLE.income_statement }"
+            <div :class="{ 'activate-tab': showTable === SHOW_TABLE.income_statement }"
                 @click="showTable = SHOW_TABLE.income_statement">收入账单</div>
             <div style="flex: 1; padding: 0 5px; gap: 5px;">
                 <!-- TODO: 条件筛选 -->
                 <div class="condition-selection">条件筛选</div>
+                <!-- 分页按钮 -->
+                <div class="page-btn-group">
+                    <button type="button">上一页</button>
+                    <button type="button">下一页</button>
+                </div>
                 <!-- 新建按钮 -->
-                <button type="button" style="width: 50px;">新建</button>
+                <button v-show="showTable === SHOW_TABLE.expenditure_bill" type="button"
+                    style="width: 60px;">新建</button>
+                <button v-show="showTable === SHOW_TABLE.income_statement" type="button"
+                    style="width: 60px;">新建</button>
             </div>
         </div>
+
+        <!-- 创建或修改支出账单的对话框 -->
+        <EditExpenditure />
 
         <div class="tab-content">
             <!-- 支出/收入表 -->
@@ -81,12 +92,6 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-
-            <!-- 分页按钮 -->
-            <div class="page-btn-group">
-                <button type="button">上一页</button>
-                <button type="button">下一页</button>
             </div>
         </div>
     </div>

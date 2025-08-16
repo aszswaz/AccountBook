@@ -1,4 +1,4 @@
-@import "../style/color.less";
+@import "./global.less";
 
 #wallet-content {
     flex: 1;
@@ -6,6 +6,7 @@
     flex-direction: column;
 }
 
+// 钱包的支出、收入和余额信息
 .wallet-info {
     height: 80px;
     display: flex;
@@ -18,19 +19,19 @@
     }
 }
 
-// 筛选条件设置区
-.condition-selection {
-    width: 100%;
-    height: auto;
-    background-color: lightgreen;
-}
-
-.tab-bar {
+// 功能区域，用于控制 table 所显示的数据，比如显示支出或收入账单，按照日期筛选数据，按照分页显示数据，以及创建新的数据
+.functional-domain {
     height: 40px;
     // 子元素也是 flex 容器，父元素也需要变成 flex 容易才能将子元素排在同一行
     display: flex;
     background-color: #F5F7Fa;
+    // 不与子元素的边框产生冲突
+    border-top: @global-border;
+    border-left: @global-border;
+    border-right: @global-border;
+    border-bottom: none;
 
+    // 功能区中的各个分区
     >div {
         display: flex;
         width: 100px;
@@ -38,29 +39,53 @@
         justify-content: center;
         align-items: center;
 
-        border-top: 1px solid black;
-        border-left: 1px solid black;
-        border-bottom: 1px solid black;
+
+        border-bottom: @global-border;
+        border-top: none;
+        border-left: @global-border;
+        border-right: none;
+
+        &:first-child {
+            border-left: none;
+        }
     }
 
-    >div:last-child {
-        border-right: 1px solid black;
-    }
-
-    >.activate {
+    // 活动的标签页
+    .activate-tab {
         background-color: @TAB_CONTENT_COLOR;
         border-bottom: none;
     }
+
+    // 筛选条件设置区
+    .condition-selection {
+        width: 100%;
+        height: auto;
+        background-color: lightgreen;
+    }
+
+    // 分页按钮区域
+    .page-btn-group {
+        background-color: lightgreen;
+        height: auto;
+        width: 400px;
+
+        button {
+            width: 60px;
+        }
+    }
 }
 
+// 支出表或收入表的标签页本体
 .tab-content {
     @interval: 5px;
 
     flex: 1;
     padding: @interval;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    // 边框和标签页导航栏的边框连为整体
+    border-top: none;
+    border-bottom: @global-border;
+    border-left: @global-border;
+    border-right: @global-border;
     // 设置子元素的布局方式
     display: flex;
     flex-direction: column;
@@ -83,13 +108,7 @@ table {
 
     th,
     td {
-        border: 1px solid black;
+        border: @global-border;
         padding: 8px;
     }
-}
-
-// 分页按钮区域
-.page-btn-group {
-    background-color: lightgreen;
-    height: auto;
 }

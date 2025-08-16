@@ -1,10 +1,10 @@
 import { Options, Vue } from 'vue-class-component'
-import { ElTable, ElTabs, ElTabPane } from 'element-plus'
+
+import EditExpenditure from '@/components/EditExpenditure.vue'
 
 const Big = require("big.js")
 
-import Wallet from '@/javascript/entity/Wallet'
-
+import Wallet from './entity/Wallet'
 @Options({
     props: {
         wallet: {
@@ -13,19 +13,21 @@ import Wallet from '@/javascript/entity/Wallet'
         }
     },
     components: {
-        ElTable,
-        ElTabs,
-        ElTabPane
+        EditExpenditure
     }
 })
 export default class WalletContent extends Vue {
     wallet?: Wallet
-    // 当前显示的表格
+    // 选择当前显示的表格
     SHOW_TABLE = {
         expenditure_bill: 0,
         income_statement: 1
     }
     showTable = this.SHOW_TABLE.expenditure_bill
+    // 打开或关闭用于创建或修改支出账单的对话框
+    editExpenditure = false
+    // 打开或关闭用于创建或修改收入账单的对话框
+    editIncome = false
 
     // 支出金额
     expenditure = new Big("0")

@@ -16,8 +16,8 @@
   </div>
 
   <!-- 编辑钱包名称的对话框 -->
-  <div class="dialog" v-if="editWalletName">
-    <div>
+  <div class="curtain" v-if="editWalletName">
+    <div class="dialog">
       <!-- 一个文本输入框，一个保存按钮，一个取消按钮 -->
       <div class="input-area">
         <input id="wallet-name-in" type="text" placeholder="请输入钱包名称" :value="activeTab?.name">

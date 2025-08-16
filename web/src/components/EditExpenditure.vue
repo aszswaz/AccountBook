@@ -2,10 +2,10 @@
     <!-- 创建或修改支出账单的对话框 -->
     <div class="curtain">
         <div class="edit-expenditure">
-            <div><span>日期：</span><input id="date-in" type="date" /></div>
+            <div><span>日期：</span><input type="date" v-model="newData.date" /></div>
             <div>
                 <span>类型：</span>
-                <select id="e-type">
+                <select v-model="newData.eType">
                     <option value="" disabled selected>-- 请选择 --</option>
                     <option value="饮食">饮食</option>
                     <option value="证券">证券</option>
@@ -18,19 +18,19 @@
                     <option value="其他">其他</option>
                 </select>
             </div>
-            <div><span>店铺：</span><input id="store-in" type="text" autocomplete="true" /></div>
-            <div><span>商品名称：</span><input id="name-in" type="text" autocomplete="true" /></div>
+            <div><span>店铺：</span><input type="text" v-model="newData.store" autocomplete="true" /></div>
+            <div><span>商品名称：</span><input type="text" v-model="newData.name" autocomplete="true" /></div>
             <div>
                 <span>单价：</span>
-                <input id="unit-price-in" type="number" @input="updateTotalPrices" />
+                <input type="number" v-model="newData.unitPrice" />
             </div>
             <div>
                 <span>数量：</span>
-                <input id="quantity-in" type="number" @input="updateTotalPrices" />
+                <input type="number" v-model="newData.quantity" />
             </div>
             <div>
                 <span>总价：</span>
-                <input id="total-prices-in" type="number" disabled />
+                <input type="number" v-model="newData.totalPrices" disabled />
             </div>
             <div class="btn-group">
                 <button type="button" @click="saveExpenditure">保存</button>
@@ -45,53 +45,57 @@ import { Options, Vue } from 'vue-class-component'
 
 const Big = require("big.js")
 
-import { getInputValue, getInputElement } from '@/javascript/util/DOMUtil'
+import Wallet from '@/javascript/entity/Wallet'
+import ExpenditureBill from '@/javascript/entity/ExpenditureBill'
 
-@Options({})
-export default class EditExpenditure extends Vue {
-    /**
-     * 根据输入的单价和数量，自动计算总价
-     */
-    updateTotalPrices() {
-        try {
-            let unitPrice = getInputValue("unit-price-in")
-            let quantity = getInputValue("quantity-in")
-            const totalPrices = getInputElement("total-prices-in")
-
-            if (unitPrice.length === 0) unitPrice = '0'
-            if (quantity.length === 0) quantity = '0'
-
-            const n1 = new Big(unitPrice)
-            const n2 = new Big(quantity)
-            const result = n1.times(n2)
-            if (totalPrices) totalPrices.value = result.toFixed(2).toString()
-        } catch (err) {
-            alert(err)
+@Options({
+    props: {
+        wallet: {
+            type: Wallet,
+            require: true
+        },
+        expenditureBill: {
+            type: ExpenditureBill,
+            require: false
         }
+    }
+})
+export default class EditExpenditure extends Vue {
+    // 钱包
+    wallet?: Wallet
+    // 支出账单
+    expenditureBill?: ExpenditureBill
+    // 用户输入的新数据，与 input 等表单元素绑定
+    newData = {
+        date: "",
+        eType: "",
+        store: "",
+        name: "",
+        unitPrice: "0",
+        quantity: "0",
+        totalPrices: "0.00"
     }
 
     /**
      * 保存支出账单
      */
     saveExpenditure() {
-        const date = getInputValue("date-in")
-        const eType = getInputValue("e-type")
-        const store = getInputValue("store-in")
-        const name = getInputValue("name-in")
-        const unitPrice = getInputValue("unit-price-in")
-        const quantity = getInputValue("quantity-in")
-
-        console.log(`date: ${date}`)
-        console.log(`eType: ${eType}`)
-        console.log(`store: ${store}`)
-        console.log(`name: ${name}`)
-        console.log(`unitPrice: ${unitPrice}`)
-        console.log(`quantity: ${quantity}`)
+        console.log(this.newData)
     }
 
-    mounted(): void {
-        const date = getInputElement("date-in")
-        date.value = new Date().toISOString().split('T')[0]
+    beforeUpdate(): void {
+        // 根据输入的单价和数量，自动计算总价
+        if (this.newData.unitPrice.length === 0) this.newData.unitPrice = '0'
+        if (this.newData.quantity.length === 0) this.newData.quantity = '0'
+
+        const n1 = new Big(this.newData.unitPrice)
+        const n2 = new Big(this.newData.quantity)
+        const result = n1.times(n2)
+        this.newData.totalPrices = result.toFixed(2).toString()
+    }
+
+    created(): void {
+        this.newData.date = new Date().toISOString().split('T')[0]
     }
 }
 </script>

@@ -12,7 +12,7 @@
       {{ item.name }}
     </div>
     <!-- 创建钱包 -->
-    <div class="tab-element" style="font-size: 25px;" @mousedown="newWallet">+</div>
+    <div class="tab-element" style="font-size: 25px;" @mousedown="createWallet">+</div>
   </div>
 
   <!-- 编辑钱包名称的对话框 -->
@@ -20,7 +20,7 @@
     <div class="dialog">
       <!-- 一个文本输入框，一个保存按钮，一个取消按钮 -->
       <div class="input-area">
-        <input id="wallet-name-in" type="text" placeholder="请输入钱包名称" :value="activeTab?.name">
+        <input type="text" placeholder="请输入钱包名称" v-model="walletNameIn">
       </div>
       <div class="buton-group">
         <button type="button" @click="saveName">保存</button>

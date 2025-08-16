@@ -9,11 +9,8 @@ export default class Wallet {
     createTime: number
     modifyTime: number
 
-    constructor(...args: any) {
-        let opt = null
-        if (args.length > 0)
-            opt = args[0]
-
+    constructor(...args: any[]) {
+        const opt = args[0]
         this.id = opt?.id
         this.uuid = opt?.uuid ?? uuidV4()
         this.name = opt?.name ?? "新建钱包"

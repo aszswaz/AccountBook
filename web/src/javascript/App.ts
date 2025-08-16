@@ -16,6 +16,7 @@ export default class App extends Vue {
   wallets: Wallet[] = [];
   activeTab: Wallet | null = null;
   editWalletName: boolean = false;
+  walletNameIn: string = "";
 
   async mounted(): Promise<void> {
     // 获取所有钱包信息
@@ -31,10 +32,9 @@ export default class App extends Vue {
   /**
    * 创建新的钱包
    */
-  async newWallet() {
+  async createWallet() {
     try {
       if (this.wallets.length < 20) {
-        const ctime = Date.now()
         const wallet = new Wallet()
         const table = await DBManager.openWalletTable();
         // 先保存到数据库再显示到页面，以便获得 IndexDB 自增的主键
@@ -56,11 +56,10 @@ export default class App extends Vue {
    */
   async saveName() {
     try {
-      const nameIn = <HTMLInputElement | null>document.getElementById("wallet-name-in")
-      if (!nameIn || !this.activeTab) return
+      if (!this.activeTab) return
 
       // 同步到页面
-      this.activeTab.name = nameIn.value
+      this.activeTab.name = this.walletNameIn ?? ""
       this.editWalletName = false
       // 将修改保存到数据库
       const table = await DBManager.openWalletTable()
@@ -69,5 +68,9 @@ export default class App extends Vue {
       console.error(error)
       alert("操作失败")
     }
+  }
+
+  beforeUpdate(): void {
+    this.walletNameIn = this.activeTab ? this.activeTab.name : ""
   }
 }
